@@ -28,6 +28,7 @@ function start_game() {
     for (var index = 0; index < 16; index++) {
         block.innerHTML += '<li class="card"><i class="fa fa-' + cards[index] + '"></i></li>';
     }
+    
 }
 
 function shuffle(array) {
@@ -51,8 +52,6 @@ window.onload = function(){
 function managGame(){
       if (event.target.classList.contains('card') && cardMatch.length < 2){
         if (!event.target.classList.contains('match') && !cardMatch.includes(event.target)){ 
-          moves++;
-          document.querySelector('.moves').innerHTML = moves;
           if (begin){
             startTime(1);
             begin = false;
@@ -62,7 +61,11 @@ function managGame(){
           if (cardMatch.length == 2){ 
             matchCard();
             checkScore();
+            moves++;
+
           }
+          document.querySelector('.moves').innerHTML = moves;
+
         }
       }
       if (matched == 8){
@@ -93,13 +96,14 @@ function myTimer(){
     manageTime(1);   
     }
 }
-var starW = 0;
+var starW = 2;
 function checkScore(){
       if (moves === 10 || moves === 20 || moves === 30){
           const starsl = document.getElementsByClassName('fa')[starW];
-        starW++;
-         // starsl.classList.remove('fa-star');
-         starsl.style.display = 'none';
+        starW--;
+         starsl.classList.remove('fa-star');
+          starsl.classList.add('fa-star-o');
+        // starsl.style.display = 'none';
 
 //          var list = document.getElementsByClassName('stars'); 
 //          list.removeChild(list.childNodes[starW]);   
@@ -122,24 +126,29 @@ function matchCard(){
       cardMatch = [];
     }, 350);
   }
+
+
 }
 function restartGame(){
-  let cards = document.querySelectorAll('ul.deck li');
-  document.querySelector('.deck').innerHTML = "";
-  moves = 0;
-  document.querySelector('.moves').innerHTML = 0; 
-  manageTime(2);
-  start_game();
-  begin = true;
-  time = 0;
-  manageTime(1);
+    location.reload();
 }
 function gameOver(){
- if (confirm("Congrats! you've done in "+ time+ "seconds")) {
-        restartGame();
-  } else {   
-  }
-  manageTime(2); 
-  matched = 0; 
+
+let starsShow = starW+1;
+
+
+
+  swal({
+    title: "Good job!",
+    text: "Gongrats! You took "+ time+ " seconds, With "+ starsShow + " Stars",
+    icon: "success",
+    button: "Play Again!",
+  }).then((restartNow) => {
+    if (restartNow) {
+      restartGame();
+    }
+  });
+
+  
 }
 
