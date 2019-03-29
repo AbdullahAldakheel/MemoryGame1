@@ -100,7 +100,7 @@ function checkScore(){
       for (star of starList){
         if (star.style.display !== 'none'){
           star.style.display = 'none';
-          Stars--;  //a count on number of stars for scorecard use.
+          Stars--; 
           break;
         }
       }
