@@ -19,7 +19,7 @@ let time = 0;
 var begin = true;
 let Stars = 3;
 var matched = 0;
-stars = document.getElementsByClassName('fa-star');
+var stars = document.getElementsByClassName('fa-star');
 
 function start_game() {
     var names = ['bicycle', 'leaf', 'cube', 'anchor', 'paper-plane-o','bicycle', 'bolt', 'bolt', 'bomb', 'diamond', 'leaf', 'diamond', 'anchor',  'paper-plane-o', 'bomb', 'cube']
@@ -93,17 +93,17 @@ function myTimer(){
     manageTime(1);   
     }
 }
-
+var starW = 0;
 function checkScore(){
-      if (moves === 20 || moves === 32){
-              const starList = document.querySelectorAll('.stars li');
-      for (star of starList){
-        if (star.style.display !== 'none'){
-          star.style.display = 'none';
-          Stars--; 
-          break;
-        }
-      }
+      if (moves === 10 || moves === 20 || moves === 30){
+          const starsl = document.getElementsByClassName('fa')[starW];
+        starW++;
+         // starsl.classList.remove('fa-star');
+         starsl.style.display = 'none';
+
+//          var list = document.getElementsByClassName('stars'); 
+//          list.removeChild(list.childNodes[starW]);   
+
   }
 }
 function matchCard(){
@@ -142,3 +142,4 @@ function gameOver(){
   manageTime(2); 
   matched = 0; 
 }
+
