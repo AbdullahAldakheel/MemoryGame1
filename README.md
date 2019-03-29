@@ -7,7 +7,7 @@
 
 ## MemoryGame
 
-Project for Udacity Front End Nanodegree programm 
+Project for Udacity Front End Nanodegree programm. 
 
 ## How To Play?
 
@@ -15,4 +15,4 @@ Project for Udacity Front End Nanodegree programm
 - Match the cards.
 - After matched 8 cards you win.
 
-[Photo](img/game.png)
+![alt text](img/game.png)
